@@ -14,7 +14,7 @@ public class PedidoConsumer {
     private final ProcessarNotificacaoUseCase processarNotificacaoUseCase;
 
     @RabbitListener(queues = RabbitBeanConfiguration.QUEUE_PEDIDO)
-    public void printarPedido(ReceberEventoNotificacaoCommand evento) {
+    public void receberEvento(ReceberEventoNotificacaoCommand evento) {
         processarNotificacaoUseCase.executar(evento);
     }
 }
