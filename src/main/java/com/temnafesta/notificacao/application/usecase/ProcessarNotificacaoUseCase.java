@@ -38,7 +38,10 @@ public class ProcessarNotificacaoUseCase {
                         "Template não encontrado para o tipo de evento: " + command.tipoEvento()));
 
         String mensagemFormatada = template.formatarMensagem(
-                command.nomeCliente(), command.pedidoId(), command.valorTotal());
+                command.nomeCliente(),
+                command.pedidoId(),
+                command.valorTotal()
+        );
 
         LocalDateTime dataOcorrencia = command.dataOcorrencia() != null
                 ? LocalDateTime.ofInstant(command.dataOcorrencia(), ZoneOffset.UTC)
