@@ -12,10 +12,19 @@ public class TemplateMensagem {
     String corpoTexto;
     boolean ativo;
 
-    public String formatarMensagem(String nomeCliente, String numeroPedido, String valorTotal) {
+    public String formatarMensagem(
+            String nomeCliente,
+            String numeroPedido,
+            String valorTotal,
+            String taxaEntrega,
+            String observacao,
+            String itens) {
         return corpoTexto
                 .replace("{nomeCliente}", nomeCliente)
                 .replace("{numeroPedido}", numeroPedido)
-                .replace("{valorTotal}", valorTotal);
+                .replace("{valorTotal}", valorTotal)
+                .replace("{taxaEntrega}", taxaEntrega)
+                .replace("{observacao}", observacao)
+                .replace("{itens}", itens);
     }
 }

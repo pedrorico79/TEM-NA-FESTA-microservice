@@ -1,4 +1,4 @@
-package com.temnafesta.notificacao.infrastructure.persistence;
+package com.temnafesta.notificacao.infrastructure.persistence.adapter;
 
 import com.temnafesta.notificacao.domain.model.TemplateMensagem;
 import com.temnafesta.notificacao.domain.ports.TemplateMensagemRepositoryPort;
@@ -20,13 +20,15 @@ public class InMemoryTemplateMensagemRepository implements TemplateMensagemRepos
                 UUID.randomUUID(),
                 TipoEventoEnum.CRIACAO_PEDIDO,
                 "Olá {nomeCliente}! Seu pedido #{numeroPedido} foi confirmado. "
-                        + "Valor total: R$ {valorTotal}. Obrigado pela preferência! - Tem Na Festa",
+                        + "Valor total: {valorTotal}. Taxa de entrega: {taxaEntrega}. "
+                        + "Itens:\n{itens}\nObservação: {observacao}. Obrigado pela preferência! - Tem Na Festa",
                 true));
         templates.put(TipoEventoEnum.ATUALIZACAO_STATUS, new TemplateMensagem(
                 UUID.randomUUID(),
                 TipoEventoEnum.ATUALIZACAO_STATUS,
                 "Olá {nomeCliente}! Seu pedido #{numeroPedido} teve o status atualizado. "
-                        + "Valor: R$ {valorTotal}.",
+                        + "Valor: {valorTotal}. Taxa de entrega: {taxaEntrega}. "
+                        + "Itens:\n{itens}\nObservação: {observacao}.",
                 true));
     }
 
