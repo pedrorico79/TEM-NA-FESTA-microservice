@@ -6,6 +6,7 @@ import com.temnafesta.notificacao.domain.model.TemplateMensagem;
 import com.temnafesta.notificacao.domain.ports.MensageriaExternaPort;
 import com.temnafesta.notificacao.domain.ports.NotificacaoRepositoryPort;
 import com.temnafesta.notificacao.domain.ports.TemplateMensagemRepositoryPort;
+import lombok.AllArgsConstructor;
 
 import java.math.BigDecimal;
 import java.text.NumberFormat;
@@ -15,6 +16,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.stream.Collectors;
 
+@AllArgsConstructor
 public class ProcessarNotificacaoUseCase {
 
     private static final int LIMITE_TENTATIVAS = 3;
@@ -22,15 +24,6 @@ public class ProcessarNotificacaoUseCase {
     private final NotificacaoRepositoryPort notificacaoRepository;
     private final TemplateMensagemRepositoryPort templateRepository;
     private final MensageriaExternaPort mensageriaExterna;
-
-    public ProcessarNotificacaoUseCase(
-            NotificacaoRepositoryPort notificacaoRepository,
-            TemplateMensagemRepositoryPort templateRepository,
-            MensageriaExternaPort mensageriaExterna) {
-        this.notificacaoRepository = notificacaoRepository;
-        this.templateRepository = templateRepository;
-        this.mensageriaExterna = mensageriaExterna;
-    }
 
     public void executar(ReceberEventoNotificacaoCommand command) {
         String pedidoId = command.pedidoId().toString();
