@@ -7,6 +7,8 @@ RUN mvn clean package -DskipTests
 
 # Stage 2: Run
 FROM amazoncorretto:21-alpine
+# wget para a verificação de saúde do Swarm (07, seção 4.4)
+RUN apk add --no-cache wget
 WORKDIR /app
 COPY --from=build /app/target/*.jar app.jar
 EXPOSE 8080
