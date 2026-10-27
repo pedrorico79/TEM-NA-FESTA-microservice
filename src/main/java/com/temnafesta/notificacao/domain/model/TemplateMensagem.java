@@ -3,6 +3,7 @@ package com.temnafesta.notificacao.domain.model;
 import com.temnafesta.notificacao.domain.vo.TipoEventoEnum;
 import lombok.Value;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Value
@@ -11,6 +12,8 @@ public class TemplateMensagem {
     TipoEventoEnum tipoEvento;
     String corpoTexto;
     boolean ativo;
+    LocalDateTime dataCriacao;
+    LocalDateTime dataAtualizacao;
 
     public String formatarMensagem(
             String nomeCliente,
