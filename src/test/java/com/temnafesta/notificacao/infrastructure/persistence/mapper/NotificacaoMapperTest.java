@@ -21,7 +21,7 @@ class NotificacaoMapperTest {
                 UUID.randomUUID(),
                 "42",
                 "+5511999999999",
-                TipoEventoEnum.CRIACAO_PEDIDO,
+                TipoEventoEnum.PEDIDO_CRIADO,
                 agora,
                 StatusEnvioEnum.ENVIADA,
                 "Mensagem",
