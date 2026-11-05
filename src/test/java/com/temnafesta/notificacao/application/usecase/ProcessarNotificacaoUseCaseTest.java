@@ -15,6 +15,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.math.BigDecimal;
 import java.time.Instant;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -43,17 +44,19 @@ class ProcessarNotificacaoUseCaseTest {
     void enviaMensagemComValoresFormatadosEItensDoPedido() {
         TemplateMensagem template = new TemplateMensagem(
                 UUID.randomUUID(),
-                TipoEventoEnum.CRIACAO_PEDIDO,
+                TipoEventoEnum.PEDIDO_CRIADO,
                 "{numeroPedido}|{valorTotal}|{taxaEntrega}|{itens}|{observacao}",
-                true);
-        when(notificacaoRepository.existeNotificacaoEnviada("42", TipoEventoEnum.CRIACAO_PEDIDO))
+                true,
+                LocalDateTime.of(2026, 10, 16, 9, 0),
+                LocalDateTime.of(2026, 10, 16, 9, 0));
+        when(notificacaoRepository.existeNotificacaoEnviada("42", TipoEventoEnum.PEDIDO_CRIADO))
                 .thenReturn(false);
-        when(templateRepository.buscarPorTipoEventoAtivo(TipoEventoEnum.CRIACAO_PEDIDO))
+        when(templateRepository.buscarPorTipoEventoAtivo(TipoEventoEnum.PEDIDO_CRIADO))
                 .thenReturn(Optional.of(template));
 
         ReceberEventoNotificacaoCommand command = new ReceberEventoNotificacaoCommand(
                 42L,
-                TipoEventoEnum.CRIACAO_PEDIDO,
+                TipoEventoEnum.PEDIDO_CRIADO,
                 Instant.parse("2026-10-16T12:00:00Z"),
                 new BigDecimal("125.50"),
                 new BigDecimal("8.75"),
